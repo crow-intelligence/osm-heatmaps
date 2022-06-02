@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>pydeck</title>
+        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <script src='https://cdn.jsdelivr.net/npm/@deck.gl/jupyter-widget@~8.5.*/dist/index.js'></script>
+    <style>
+    body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#deck-map-container {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+
+#map {
+  pointer-events: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+}
+
+#deckgl-overlay {
+  z-index: 2;
+  background: none;
+}
+
+#deck-map-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+#deck-container {
+  width: 100vw;
+  height: 100vh;
+}
+    </style>
+  </head>
+  <body>
+    <div id="deck-container">
+    </div>
+  </body>
+  <script>
+    const jsonInput = {"initialViewState": {"bearing": 0, "latitude": 47.497913, "longitude": 19.040236, "pitch": 30, "zoom": 7}, "layers": [{"@@type": "H3HexagonLayer", "data": [{"count": 16, "hex": "851e1cb7fffffff"}, {"count": 120, "hex": "851e037bfffffff"}, {"count": 5, "hex": "851e1c57fffffff"}, {"count": 5, "hex": "851e1e87fffffff"}, {"count": 6, "hex": "851e1eb3fffffff"}, {"count": 1, "hex": "851e0e57fffffff"}, {"count": 11, "hex": "851e0357fffffff"}, {"count": 14, "hex": "851e0347fffffff"}, {"count": 10, "hex": "851e1c53fffffff"}, {"count": 22, "hex": "851e0363fffffff"}, {"count": 1, "hex": "851e03c7fffffff"}, {"count": 1, "hex": "851e08d3fffffff"}, {"count": 1, "hex": "851e1c4bfffffff"}, {"count": 4, "hex": "851e112ffffffff"}, {"count": 1, "hex": "851e1d67fffffff"}, {"count": 26, "hex": "851e0373fffffff"}, {"count": 2, "hex": "851e032bfffffff"}, {"count": 13, "hex": "851e036bfffffff"}, {"count": 4, "hex": "851e18a7fffffff"}, {"count": 2, "hex": "851e1dc3fffffff"}, {"count": 4, "hex": "851e1dbbfffffff"}, {"count": 2, "hex": "851e0a4ffffffff"}, {"count": 1, "hex": "851e19dbfffffff"}, {"count": 11, "hex": "851e020ffffffff"}, {"count": 1, "hex": "851e1d2ffffffff"}, {"count": 5, "hex": "851e1cbbfffffff"}, {"count": 26, "hex": "851e0e8ffffffff"}, {"count": 12, "hex": "851e030bfffffff"}, {"count": 4, "hex": "851e1127fffffff"}, {"count": 2, "hex": "851e1cd3fffffff"}, {"count": 1, "hex": "851e1da7fffffff"}, {"count": 5, "hex": "851e0277fffffff"}, {"count": 1, "hex": "851e1c93fffffff"}, {"count": 5, "hex": "851e1c8bfffffff"}, {"count": 18, "hex": "851e18d7fffffff"}, {"count": 3, "hex": "851e18b7fffffff"}, {"count": 4, "hex": "851e1dd7fffffff"}, {"count": 2, "hex": "851e1c33fffffff"}, {"count": 19, "hex": "851e1cc7fffffff"}, {"count": 5, "hex": "851e030ffffffff"}, {"count": 3, "hex": "851e1cdbfffffff"}, {"count": 8, "hex": "851e1ca3fffffff"}, {"count": 1, "hex": "851e1ca7fffffff"}, {"count": 4, "hex": "851e113bfffffff"}, {"count": 7, "hex": "851e1123fffffff"}, {"count": 3, "hex": "851e0e6ffffffff"}, {"count": 3, "hex": "851e1113fffffff"}, {"count": 4, "hex": "851e0353fffffff"}, {"count": 3, "hex": "851e1c8ffffffff"}, {"count": 2, "hex": "851e0e07fffffff"}, {"count": 3, "hex": "851e1c5bfffffff"}, {"count": 4, "hex": "851e020bfffffff"}, {"count": 11, "hex": "851e0377fffffff"}, {"count": 3, "hex": "851e1167fffffff"}, {"count": 3, "hex": "851e0307fffffff"}, {"count": 4, "hex": "851e0e13fffffff"}, {"count": 5, "hex": "851e0e73fffffff"}, {"count": 2, "hex": "851e116ffffffff"}, {"count": 3, "hex": "851e1c37fffffff"}, {"count": 2, "hex": "851e0ea7fffffff"}, {"count": 3, "hex": "851e0c7bfffffff"}, {"count": 4, "hex": "851e1ebbfffffff"}, {"count": 1, "hex": "851e1c03fffffff"}, {"count": 1, "hex": "851e033bfffffff"}, {"count": 6, "hex": "851e0243fffffff"}, {"count": 10, "hex": "851e0303fffffff"}, {"count": 13, "hex": "851e0227fffffff"}, {"count": 6, "hex": "851e035bfffffff"}, {"count": 5, "hex": "851e026ffffffff"}, {"count": 6, "hex": "851e1eb7fffffff"}, {"count": 2, "hex": "851e1caffffffff"}, {"count": 6, "hex": "851e034bfffffff"}, {"count": 26, "hex": "851e1e37fffffff"}, {"count": 12, "hex": "851e19d3fffffff"}, {"count": 1, "hex": "851e0a1bfffffff"}, {"count": 3, "hex": "851e022ffffffff"}, {"count": 10, "hex": "851e0343fffffff"}, {"count": 1, "hex": "851e1cc3fffffff"}, {"count": 2, "hex": "851e0edbfffffff"}, {"count": 1, "hex": "851e1147fffffff"}, {"count": 1, "hex": "851e0ebbfffffff"}, {"count": 3, "hex": "851e0367fffffff"}, {"count": 1, "hex": "851e0e7bfffffff"}, {"count": 3, "hex": "851e18cbfffffff"}, {"count": 7, "hex": "851e110ffffffff"}, {"count": 3, "hex": "851e0ecbfffffff"}, {"count": 2, "hex": "851e0e8bfffffff"}, {"count": 3, "hex": "851e0a83fffffff"}, {"count": 3, "hex": "851e1c83fffffff"}, {"count": 3, "hex": "851e022bfffffff"}, {"count": 2, "hex": "851e0eaffffffff"}, {"count": 3, "hex": "851e1d4bfffffff"}, {"count": 1, "hex": "851e0acffffffff"}, {"count": 1, "hex": "851e11b7fffffff"}, {"count": 3, "hex": "851e0317fffffff"}, {"count": 1, "hex": "851e1c87fffffff"}, {"count": 1, "hex": "851e1157fffffff"}, {"count": 1, "hex": "851e0853fffffff"}, {"count": 12, "hex": "851e08dbfffffff"}, {"count": 2, "hex": "851e1197fffffff"}, {"count": 1, "hex": "851e1807fffffff"}, {"count": 1, "hex": "851e1817fffffff"}, {"count": 1, "hex": "851e188ffffffff"}, {"count": 1, "hex": "851e0337fffffff"}, {"count": 2, "hex": "851e1523fffffff"}, {"count": 6, "hex": "851e1527fffffff"}, {"count": 1, "hex": "851e11bbfffffff"}, {"count": 4, "hex": "851e0ed7fffffff"}, {"count": 3, "hex": "851e1ccbfffffff"}, {"count": 2, "hex": "851e08c3fffffff"}, {"count": 7, "hex": "851e0a97fffffff"}, {"count": 3, "hex": "851e1c97fffffff"}, {"count": 3, "hex": "851e1813fffffff"}, {"count": 2, "hex": "851e1d63fffffff"}, {"count": 12, "hex": "851e1137fffffff"}, {"count": 6, "hex": "851e0ea3fffffff"}, {"count": 1, "hex": "851e1c3bfffffff"}, {"count": 2, "hex": "851e1c9bfffffff"}, {"count": 3, "hex": "851e081bfffffff"}, {"count": 2, "hex": "851e0e2ffffffff"}, {"count": 2, "hex": "851e1cabfffffff"}, {"count": 1, "hex": "851e1173fffffff"}, {"count": 1, "hex": "851e088bfffffff"}, {"count": 2, "hex": "851e085bfffffff"}, {"count": 1, "hex": "851e024ffffffff"}, {"count": 1, "hex": "851e1e93fffffff"}, {"count": 2, "hex": "851e0a8ffffffff"}, {"count": 2, "hex": "851e1dc7fffffff"}, {"count": 2, "hex": "851e0e17fffffff"}, {"count": 5, "hex": "851e031bfffffff"}, {"count": 1, "hex": "851e0313fffffff"}, {"count": 1, "hex": "851e1dcffffffff"}, {"count": 11, "hex": "851e1d1bfffffff"}, {"count": 3, "hex": "851e1cd7fffffff"}, {"count": 3, "hex": "851e0c4ffffffff"}, {"count": 6, "hex": "851e0eb3fffffff"}, {"count": 5, "hex": "851e0263fffffff"}, {"count": 6, "hex": "851e0a03fffffff"}, {"count": 1, "hex": "851e0a13fffffff"}, {"count": 1, "hex": "851e0ac7fffffff"}, {"count": 2, "hex": "851e0a8bfffffff"}, {"count": 4, "hex": "851e1e27fffffff"}, {"count": 3, "hex": "851e0327fffffff"}, {"count": 2, "hex": "851e1c63fffffff"}, {"count": 1, "hex": "851e1c73fffffff"}, {"count": 2, "hex": "851e1c77fffffff"}, {"count": 3, "hex": "851e0ec3fffffff"}, {"count": 2, "hex": "851e0ecffffffff"}, {"count": 2, "hex": "851e1d83fffffff"}, {"count": 2, "hex": "851e1d9bfffffff"}, {"count": 7, "hex": "851e1893fffffff"}, {"count": 2, "hex": "851e1c2ffffffff"}, {"count": 5, "hex": "851e1c2bfffffff"}, {"count": 4, "hex": "851e1c67fffffff"}, {"count": 1, "hex": "851e0e83fffffff"}, {"count": 4, "hex": "851e1c23fffffff"}, {"count": 5, "hex": "851e1d8bfffffff"}, {"count": 3, "hex": "851e0ad7fffffff"}, {"count": 5, "hex": "851e0c47fffffff"}, {"count": 2, "hex": "851e0257fffffff"}, {"count": 1, "hex": "851e021bfffffff"}, {"count": 1, "hex": "851e11a7fffffff"}, {"count": 4, "hex": "851e0267fffffff"}, {"count": 4, "hex": "851e026bfffffff"}, {"count": 1, "hex": "851e1c1bfffffff"}, {"count": 5, "hex": "851e1ccffffffff"}, {"count": 2, "hex": "851e1993fffffff"}, {"count": 4, "hex": "851e1d57fffffff"}, {"count": 2, "hex": "851e0ac3fffffff"}, {"count": 1, "hex": "851e0acbfffffff"}, {"count": 3, "hex": "851e1ddbfffffff"}, {"count": 2, "hex": "851e189bfffffff"}, {"count": 2, "hex": "851e0e97fffffff"}, {"count": 1, "hex": "851e0ad3fffffff"}, {"count": 7, "hex": "851e0a87fffffff"}, {"count": 1, "hex": "851e18dbfffffff"}, {"count": 3, "hex": "851e18c3fffffff"}, {"count": 2, "hex": "851e1c07fffffff"}, {"count": 1, "hex": "851e1193fffffff"}, {"count": 2, "hex": "851e11cffffffff"}, {"count": 4, "hex": "851e0a53fffffff"}, {"count": 1, "hex": "851e116bfffffff"}, {"count": 1, "hex": "851e1163fffffff"}, {"count": 9, "hex": "851e025bfffffff"}, {"count": 1, "hex": "851e18d3fffffff"}, {"count": 1, "hex": "851e0843fffffff"}, {"count": 1, "hex": "851e117bfffffff"}, {"count": 1, "hex": "851e1e1bfffffff"}, {"count": 1, "hex": "851e1d23fffffff"}, {"count": 5, "hex": "851e0273fffffff"}, {"count": 2, "hex": "851e027bfffffff"}, {"count": 3, "hex": "851e036ffffffff"}, {"count": 3, "hex": "851e1183fffffff"}, {"count": 3, "hex": "851e1dd3fffffff"}, {"count": 2, "hex": "851e118ffffffff"}, {"count": 1, "hex": "851e118bfffffff"}, {"count": 1, "hex": "851e1d5bfffffff"}, {"count": 2, "hex": "851e1c27fffffff"}, {"count": 1, "hex": "851e0a93fffffff"}, {"count": 1, "hex": "851e1e3bfffffff"}, {"count": 1, "hex": "851e1ed3fffffff"}, {"count": 1, "hex": "851e1d0ffffffff"}, {"count": 1, "hex": "851e1d33fffffff"}, {"count": 1, "hex": "851e1d73fffffff"}, {"count": 1, "hex": "851e11b3fffffff"}, {"count": 3, "hex": "851e1c13fffffff"}, {"count": 2, "hex": "851e08cbfffffff"}, {"count": 2, "hex": "851e0e43fffffff"}, {"count": 2, "hex": "851e0c6ffffffff"}, {"count": 2, "hex": "851e0c67fffffff"}, {"count": 1, "hex": "851e1dabfffffff"}, {"count": 2, "hex": "851e0e0ffffffff"}, {"count": 2, "hex": "851e0e03fffffff"}, {"count": 1, "hex": "851e1c0ffffffff"}, {"count": 1, "hex": "851e08d7fffffff"}, {"count": 2, "hex": "851e0e53fffffff"}, {"count": 3, "hex": "851e034ffffffff"}, {"count": 2, "hex": "851e089bfffffff"}, {"count": 1, "hex": "851e0253fffffff"}, {"count": 3, "hex": "851e181bfffffff"}, {"count": 2, "hex": "851e1117fffffff"}, {"count": 2, "hex": "851e0817fffffff"}, {"count": 2, "hex": "851e11a3fffffff"}, {"count": 3, "hex": "851e0a43fffffff"}, {"count": 1, "hex": "851e0333fffffff"}, {"count": 1, "hex": "851e1da3fffffff"}, {"count": 4, "hex": "851e1d43fffffff"}, {"count": 1, "hex": "851e0203fffffff"}, {"count": 13, "hex": "851e19c3fffffff"}, {"count": 1, "hex": "851e18bbfffffff"}, {"count": 1, "hex": "851e1883fffffff"}, {"count": 3, "hex": "851e0c73fffffff"}, {"count": 1, "hex": "851e1c47fffffff"}, {"count": 1, "hex": "851e1d47fffffff"}, {"count": 4, "hex": "851e03a7fffffff"}, {"count": 3, "hex": "851e0247fffffff"}, {"count": 2, "hex": "851e19d7fffffff"}, {"count": 1, "hex": "851e111bfffffff"}, {"count": 1, "hex": "851e1e2ffffffff"}, {"count": 1, "hex": "851e11affffffff"}, {"count": 1, "hex": "851e1e33fffffff"}, {"count": 1, "hex": "851e1c17fffffff"}, {"count": 2, "hex": "851e0a17fffffff"}, {"count": 2, "hex": "851e198ffffffff"}, {"count": 1, "hex": "851e1d6ffffffff"}, {"count": 3, "hex": "851e0323fffffff"}, {"count": 1, "hex": "851e18b3fffffff"}, {"count": 1, "hex": "851e0813fffffff"}, {"count": 2, "hex": "851e1c6ffffffff"}, {"count": 2, "hex": "851e1d17fffffff"}, {"count": 2, "hex": "851e03a3fffffff"}, {"count": 1, "hex": "851e1ea7fffffff"}, {"count": 1, "hex": "851e1987fffffff"}, {"count": 1, "hex": "851e1d53fffffff"}, {"count": 1, "hex": "851e012ffffffff"}, {"count": 1, "hex": "851e1913fffffff"}, {"count": 2, "hex": "851e0893fffffff"}, {"count": 1, "hex": "851e1e8bfffffff"}, {"count": 5, "hex": "851e1d4ffffffff"}, {"count": 1, "hex": "851e1d3bfffffff"}, {"count": 1, "hex": "851e0ec7fffffff"}, {"count": 1, "hex": "851e032ffffffff"}, {"count": 1, "hex": "851e03abfffffff"}, {"count": 3, "hex": "851e03bbfffffff"}, {"count": 1, "hex": "851e024bfffffff"}, {"count": 2, "hex": "851e198bfffffff"}, {"count": 1, "hex": "851e0e9bfffffff"}], "extruded": false, "filled": true, "getFillColor": "@@=[0, 255, count]", "getHexagon": "@@=hex", "getLineColor": [255, 255, 255], "id": "5d7bc6ed-d529-48d9-b021-67df1ee65c82", "lineWidthMinPixels": 2, "pickable": true, "stroked": true}], "mapProvider": "carto", "mapStyle": "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json", "views": [{"@@type": "MapView", "controller": true}]};
+    const tooltip = {'text': 'Count: {count}'};
+    const customLibraries = null;
+
+    const deckInstance = createDeck({
+                  container: document.getElementById('deck-container'),
+      jsonInput,
+      tooltip,
+      customLibraries
+    });
+
+  </script>
+</html>

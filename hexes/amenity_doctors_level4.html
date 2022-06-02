@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>pydeck</title>
+        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <script src='https://cdn.jsdelivr.net/npm/@deck.gl/jupyter-widget@~8.5.*/dist/index.js'></script>
+    <style>
+    body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#deck-map-container {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+
+#map {
+  pointer-events: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+}
+
+#deckgl-overlay {
+  z-index: 2;
+  background: none;
+}
+
+#deck-map-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+#deck-container {
+  width: 100vw;
+  height: 100vh;
+}
+    </style>
+  </head>
+  <body>
+    <div id="deck-container">
+    </div>
+  </body>
+  <script>
+    const jsonInput = {"initialViewState": {"bearing": 0, "latitude": 47.497913, "longitude": 19.040236, "pitch": 30, "zoom": 7}, "layers": [{"@@type": "H3HexagonLayer", "data": [{"count": 31, "hex": "841e1cbffffffff"}, {"count": 204, "hex": "841e037ffffffff"}, {"count": 19, "hex": "841e1c5ffffffff"}, {"count": 6, "hex": "841e1e9ffffffff"}, {"count": 18, "hex": "841e1ebffffffff"}, {"count": 4, "hex": "841e0e5ffffffff"}, {"count": 51, "hex": "841e035ffffffff"}, {"count": 1, "hex": "841e03dffffffff"}, {"count": 18, "hex": "841e08dffffffff"}, {"count": 32, "hex": "841e113ffffffff"}, {"count": 5, "hex": "841e1d7ffffffff"}, {"count": 31, "hex": "841e19dffffffff"}, {"count": 14, "hex": "841e1ddffffffff"}, {"count": 6, "hex": "841e1dbffffffff"}, {"count": 9, "hex": "841e0a5ffffffff"}, {"count": 16, "hex": "841e021ffffffff"}, {"count": 3, "hex": "841e1d3ffffffff"}, {"count": 30, "hex": "841e0e9ffffffff"}, {"count": 36, "hex": "841e031ffffffff"}, {"count": 40, "hex": "841e1cdffffffff"}, {"count": 9, "hex": "841e0adffffffff"}, {"count": 30, "hex": "841e027ffffffff"}, {"count": 19, "hex": "841e1c9ffffffff"}, {"count": 24, "hex": "841e18dffffffff"}, {"count": 15, "hex": "841e0e1ffffffff"}, {"count": 8, "hex": "841e18bffffffff"}, {"count": 24, "hex": "841e1c3ffffffff"}, {"count": 9, "hex": "841e0e7ffffffff"}, {"count": 14, "hex": "841e111ffffffff"}, {"count": 23, "hex": "841e025ffffffff"}, {"count": 10, "hex": "841e117ffffffff"}, {"count": 16, "hex": "841e0ebffffffff"}, {"count": 11, "hex": "841e0c7ffffffff"}, {"count": 9, "hex": "841e1c1ffffffff"}, {"count": 11, "hex": "841e033ffffffff"}, {"count": 19, "hex": "841e023ffffffff"}, {"count": 11, "hex": "841e0a1ffffffff"}, {"count": 15, "hex": "841e0edffffffff"}, {"count": 19, "hex": "841e0a9ffffffff"}, {"count": 12, "hex": "841e189ffffffff"}, {"count": 5, "hex": "841e11bffffffff"}, {"count": 1, "hex": "841e115ffffffff"}, {"count": 6, "hex": "841e085ffffffff"}, {"count": 7, "hex": "841e119ffffffff"}, {"count": 8, "hex": "841e181ffffffff"}, {"count": 9, "hex": "841e153ffffffff"}, {"count": 30, "hex": "841e1e3ffffffff"}, {"count": 6, "hex": "841e081ffffffff"}, {"count": 3, "hex": "841e0e3ffffffff"}, {"count": 5, "hex": "841e089ffffffff"}, {"count": 15, "hex": "841e1d1ffffffff"}, {"count": 7, "hex": "841e0c5ffffffff"}, {"count": 12, "hex": "841e1c7ffffffff"}, {"count": 10, "hex": "841e1d9ffffffff"}, {"count": 5, "hex": "841e199ffffffff"}, {"count": 18, "hex": "841e1d5ffffffff"}, {"count": 2, "hex": "841e11dffffffff"}, {"count": 1, "hex": "841e1e1ffffffff"}, {"count": 12, "hex": "841e03bffffffff"}, {"count": 1, "hex": "841e1edffffffff"}, {"count": 1, "hex": "841e013ffffffff"}, {"count": 1, "hex": "841e191ffffffff"}], "extruded": false, "filled": true, "getFillColor": "@@=[255 - count, 255, count]", "getHexagon": "@@=hex", "getLineColor": [255, 255, 255], "id": "ea392b72-3b12-4c44-b829-2409f525dbb4", "lineWidthMinPixels": 2, "pickable": true, "stroked": true}], "mapProvider": "carto", "mapStyle": "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json", "views": [{"@@type": "MapView", "controller": true}]};
+    const tooltip = {'text': 'Count: {count}'};
+    const customLibraries = null;
+
+    const deckInstance = createDeck({
+                  container: document.getElementById('deck-container'),
+      jsonInput,
+      tooltip,
+      customLibraries
+    });
+
+  </script>
+</html>
